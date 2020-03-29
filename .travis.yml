@@ -61,16 +61,16 @@ matrix:
           after_success:
             - if [[ "${TRAVIS_BRANCH}" != "cppgui" ]]; then source ${HOME}/perl5/perlbrew/etc/bashrc; perlbrew switch slic3r-perl; ./package/linux/travis-deploy-main.sh || travis_terminate 1; fi
 
-        - os: linux
-          env: 
-            - TARGET=cpp
-            - CACHE=$HOME/cache
-          cache:
-            apt: true
-            directories:
-              - $HOME/cache
-          after_success:
-            - package/linux/travis-deploy-cpp.sh
+        #- os: linux
+        #   env: 
+        #    - TARGET=cpp
+        #    - CACHE=$HOME/cache
+        #  cache:
+        #    apt: true
+        #    directories:
+        #      - $HOME/cache
+        #  after_success:
+        #    - package/linux/travis-deploy-cpp.sh
 
         # While this works, it does not appear to be needed as the 10.13 builds
         # work on 10.12 as well.
@@ -97,17 +97,17 @@ matrix:
           after_success:
             - if [[ "${TRAVIS_BRANCH}" != "cppgui" ]]; then ./package/osx/travis-deploy-main.sh || travis_terminate 1; fi
 
-        - os: osx
-          osx_image: xcode9.4
-          env:
-            - TARGET=cpp
-            - CACHE=$HOME/cache
-          cache:
-            ccache: true
-            directories:
-              - /usr/local/Homebrew
-              - $HOME/cache
-              - $HOME/Library/Caches/Homebrew
+        #- os: osx
+        #  osx_image: xcode9.4
+        #  env:
+        #    - TARGET=cpp
+        #    - CACHE=$HOME/cache
+        #  cache:
+        #    ccache: true
+        #    directories:
+        #      - /usr/local/Homebrew
+        #      - $HOME/cache
+        #      - $HOME/Library/Caches/Homebrew
 
 env:
   global:
