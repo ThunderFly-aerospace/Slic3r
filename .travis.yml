@@ -1,8 +1,8 @@
 # TravisCI configuration for Slic3r - https://slic3r.org
-# 
+#
 # We build Linux and macOS versions on TravisCI, both the main program
 # (perl/C++) and the pure C++ one.
-# 
+#
 # Each job performs the following steps:
 # - install dependencies (cached across builds)
 # - build
@@ -38,14 +38,14 @@ addons:
     - gcc-7
     - g++-8
     - gcc-8
-    - libgtk2.0-0 
+    - libgtk2.0-0
     - libgtk2.0-dev
     - freeglut3
     - cmake
     - wx3.0-headers
     - libwxgtk3.0-dev
     - wx-common
-  ssh_known_hosts: dl.slic3r.org
+  ssh_known_hosts: s1.mlab.cz
 
 matrix:
     include:
@@ -62,7 +62,7 @@ matrix:
             - if [[ "${TRAVIS_BRANCH}" != "cppgui" ]]; then source ${HOME}/perl5/perlbrew/etc/bashrc; perlbrew switch slic3r-perl; ./package/linux/travis-deploy-main.sh || travis_terminate 1; fi
 
         - os: linux
-           env: 
+          env:
             - TARGET=cpp
             - CACHE=$HOME/cache
           cache:
