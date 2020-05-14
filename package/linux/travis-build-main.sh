@@ -6,7 +6,7 @@ set -eo pipefail
 
 if [ ! -d $HOME/perl5/perlbrew/perls/slic3r-perl ]; then
     echo "Downloading slic3r-perlbrew-5.28.tar.bz2"
-    curl -L "http://www.siusgs.com/slic3r/buildserver/slic3r-perl.528.gcc81.travis.tar.bz2" -o /tmp/slic3r-perlbrew-5.28.tar.bz2; 
+    curl -L "http://www.siusgs.com/slic3r/buildserver/slic3r-perl.528.gcc81.travis.tar.bz2" -o /tmp/slic3r-perlbrew-5.28.tar.bz2;
     tar -C$HOME/perl5/perlbrew/perls -xjf /tmp/slic3r-perlbrew-5.28.tar.bz2
 fi
 
@@ -25,8 +25,11 @@ if [ ! -e ./local-lib/lib/perl5/x86_64-linux-thread-multi/Wx.pm ]; then
     tar -C$TRAVIS_BUILD_DIR -xjf /tmp/local-lib-wx302.tar.bz2
 fi
 
-cpanm local::lib
+echo "local"
+cpanm local::lib --force
+echo "eval"
 eval $(perl -Mlocal::lib=${TRAVIS_BUILD_DIR}/local-lib)
+echo "cc"
 CC=g++-8 CXX=g++-8 cpanm ExtUtils::CppGuess --force
 CC=g++-8 CXX=g++-8 BOOST_DIR=$HOME/boost_1_69_0 perl ./Build.PL
 excode=$?
