@@ -30,7 +30,8 @@ eval $(perl -Mlocal::lib=${TRAVIS_BUILD_DIR}/local-lib)
 echo "cc"
 CC=g++-9 CXX=g++-9 cpanm ExtUtils::CppGuess --force
 echo "cc2"
-CC=g++-9 CXX=g++-9 BOOST_DIR=$HOME/boost_1_69_0 perl ./Build.PL
+# CC=g++-9 CXX=g++-9 BOOST_DIR=$HOME/boost_1_69_0 perl ./Build.PL
+perl ./Build.PL
 excode=$?
 if [ $excode -ne 0 ]; then exit $excode; fi
 perl ./Build.PL --gui
