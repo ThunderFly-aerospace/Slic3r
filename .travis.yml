@@ -1,4 +1,4 @@
-# TravisCI configuration for Slic3r - https://slic3r.org
+# TravisCI configuration for Slic3r - https://slic3r.org, ThunderFly fork
 #
 # We build Linux and macOS versions on TravisCI, both the main program
 # (perl/C++) and the pure C++ one.
@@ -8,7 +8,7 @@
 # - build
 # - test
 # - package
-# - deploy to dl.slic3r.org (except for the cppgui branch)
+# - deploy to s1.mlab.cz (except for the cppgui branch)
 
 language: generic
 dist: trusty
@@ -106,18 +106,10 @@ matrix:
             ccache: true
             directories:
               - /usr/local/Homebrew
-        #      - $HOME/cache
-        #      - $HOME/Library/Caches/Homebrew
+              - $HOME/cache
+              - $HOME/Library/Caches/Homebrew
 
 env:
   global:
   - secure: eEVRZNMv7FM6jrOU9iAFkDhWxFQ1WtHBEaObImcvtFUxy6vWSt3ehFFeTRouj3uHQAnbvUzziDyvPPm8/95alv5g/du8ML6YzzqKBKfazM0xQ7SF6R2DQL8lfFIp+RSV7T02byEP1f1g7Zva7xH9szIlDcSfU0pXW4KWbkBFMd8=
   - secure: gj338h+qHGccTD/VQFmEJkqdg2McIe2pO0iZ4Ae9BvY5vxkIML4BpoYZQXQTqiAOETnUjlcknY9lx0hI/PfkDD9MSJc5BC/3fMYRCu3SgAclEwklWf9vvtodUeT69mtnZuw1zze1nTbExuOw2mepbqFjxKKMl+9l5oCz4O54fXU=
-
-notifications:
-  irc:
-    channels:
-    - chat.freenode.net#slic3r
-    on_success: change
-    on_failure: always
-    use_notice: true
